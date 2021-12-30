@@ -59,73 +59,6 @@ pnode getNode(int id, pnode *head)
     return NULL;
 }
 
-// void insert_node_cmd(pnode *head)
-// {
-//     int id = -1;
-//     scanf("%d", &id);
-//     pnode src = getNode(id, head);
-//     if (src == NULL) // crate new node
-//     {
-//         src = (pnode)(malloc(sizeof(node)));
-//         if (src == NULL)
-//         {
-//             printf("malloc didnt work");
-//             return;
-//         }
-//         else
-//         {
-//             src->node_num = id;
-//             src->next = *head;
-//             src->edges = NULL;
-//             *head = src;
-//         }
-//     }
-//     else
-//     { // we are run over exsist node
-//         pedge inx = src->edges;
-//         while (head != NULL)
-//         {
-//             pedge temp = inx->next;
-//             free(inx);
-//             inx = temp;
-//         }
-//         src->edges = NULL;
-//     }
-//     pedge *endEdge = &(src->edges);
-//     int dest = -1;
-
-//     while (scanf("%d", &dest) != 0)
-//     {
-//         pnode destNode = getNode(dest, head);
-//         if (destNode == NULL)
-//         {
-//             destNode = (pnode)(malloc(sizeof(node)));
-//             if (destNode == NULL)
-//             {
-//                 perror("malloc didnt work");
-//             }
-//             else
-//             {
-//                 destNode->node_num = dest;
-//                 destNode->edges = NULL;
-//                 destNode->next = *head;
-//                 *head = destNode;
-//             }
-//         }
-//         int weight = -1;
-//         scanf("%d", &weight);
-//         *endEdge = (pedge)(malloc(sizeof(edge)));
-//         if ((*endEdge) == NULL)
-//         {
-//             perror("malloc didnt work");
-//         }
-//         (*endEdge)->weight = weight;
-//         (*endEdge)->next = NULL;
-//         (*endEdge)->endpoint = destNode;
-//         endEdge = &((*endEdge)->next);
-//     }
-// }
-
 void add_adge(pnode *head,int src){
 
     int dest;
@@ -160,7 +93,6 @@ void insert_edge(pnode temp,int dest,int w,pnode *head){
         temp->edges->next =NULL;
         node *D = getNode(dest,head);
         temp->edges->endpoint = &(*D);
-        printf("if");
     }
     else{
         pedge n = temp->edges;
@@ -178,9 +110,88 @@ void insert_edge(pnode temp,int dest,int w,pnode *head){
         n->next->weight = w;
         node *D = getNode(dest,head);
         n->next->endpoint = &(*D);
-        printf("else");
     }
 }
+void insert_node_cmd(pnode *head){
+    int src;
+    scanf("%d", &src);
+    printf("src: %d\n", src);
+    int dest;
+    int count = 0;
+    int w;
+    pnode temp = getNode(src,head);
+    if(temp == NULL){
+        pnode inGraph = *head;
+        while (inGraph->next != NULL){
+            inGraph = inGraph->next;
+        }
+        pnode newNode = (pnode)(malloc(sizeof (node)));
+        newNode->id = src;
+        newNode->edges = NULL;
+        newNode->next = NULL;
+        inGraph->next = newNode;
+        printf("enter dest and weight");
+        while (scanf("%d",&dest)!=0 && scanf("%d",&w)!=0){
+            if((dest >= 'A' && dest <= 'Z') || (w >= 'A' && w <= 'Z'))
+            {
+                break;
+            }
+            if((dest >= 'a' && dest <= 'z') || (w >= 'a' && w <= 'z'))
+            {
+                break;
+            }
+            insert_edge(newNode,dest,w,head);
+        }
+    } else{
+        free_edges(temp);
+        pedge tempEdge = temp->edges;
+        temp->edges = NULL;
+        printf("enter dest and weight");
+        while (scanf("%d",&dest)!=0 && scanf("%d",&w)!=0){
+            if((dest >= 'A' && dest <= 'Z') || (w >= 'A' && w <= 'Z'))
+            {
+                break;
+            }
+            if((dest >= 'a' && dest <= 'z') || (w >= 'a' && w <= 'z'))
+            {
+                break;
+            }
+            insert_edge(temp,dest,w,head);
+        }
+    }
+}
+void free_edges(pnode p)
+{
+    if(p->edges!=NULL)
+    {
+        pedge temp = p->edges;
+
+        while(temp->next!=NULL)
+        {
+            pedge p1 = NULL;
+            p1 = temp;
+            temp = temp->next;
+            free(p1);
+        }
+    }
+}
+void deleteGraph_cmd(pnode* head){
+    pnode tempNode = *head;
+    while (tempNode != NULL)
+    {
+        pedge tempEdge = tempNode->edges;
+        while (tempEdge != NULL)
+        {
+            pedge tempEdgefree = tempEdge;
+            tempEdge = tempEdge->next;
+            free(tempEdgefree);
+        }
+        node *tempFree = tempNode;
+        tempNode = tempNode->next;
+        free(tempFree);
+    }
+}
+
 
 
 

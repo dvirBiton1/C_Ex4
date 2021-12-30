@@ -23,6 +23,7 @@ void print_graph(pnode head); //for self debug
 void deleteGraph_cmd(pnode* head);
 void shortsPath_cmd(pnode head);
 void TSP_cmd(pnode head);
+void free_edges(pnode p);
 
 node* creat_graph(int num_of_nodes);
 
