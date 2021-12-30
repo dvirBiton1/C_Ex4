@@ -34,25 +34,31 @@ int main() {
         }
         if (choise == 'B') {
             printf("start B FUNC\n");
-//            if(scanf("%d",&src) != 0){
-//                printf("scanf work\n");
-//            }
-//            printf("src :%d\n", src);
             insert_node_cmd(head);
             print_graph(*head);
+            continue;
 
         }
         if (choise == 'D') {
-            // delete_node_cmd(head);
+            printf("start D FUNC\n");
+            delete_node_cmd(head);
+            print_graph(*head);
+            continue;
         }
         if (choise == 'S') {
+            printf("start S FUNC\n");
             // shortsPath_cmd(*head);
+            print_graph(*head);
+            continue;
         }
         if (choise == 'T') {
+            printf("start T FUNC\n");
             // TSP_cmd(*head);
+            print_graph(*head);
+            continue;
         }
         break;
-
     }
+    deleteGraph_cmd(head);
 
 }

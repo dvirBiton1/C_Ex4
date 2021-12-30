@@ -115,7 +115,6 @@ void insert_edge(pnode temp,int dest,int w,pnode *head){
 void insert_node_cmd(pnode *head){
     int src;
     scanf("%d", &src);
-    printf("src: %d\n", src);
     int dest;
     int count = 0;
     int w;
@@ -130,7 +129,7 @@ void insert_node_cmd(pnode *head){
         newNode->edges = NULL;
         newNode->next = NULL;
         inGraph->next = newNode;
-        printf("enter dest and weight");
+        printf("enter dest and weight:\n");
         while (scanf("%d",&dest)!=0 && scanf("%d",&w)!=0){
             if((dest >= 'A' && dest <= 'Z') || (w >= 'A' && w <= 'Z'))
             {
@@ -146,7 +145,7 @@ void insert_node_cmd(pnode *head){
         free_edges(temp);
         pedge tempEdge = temp->edges;
         temp->edges = NULL;
-        printf("enter dest and weight");
+        printf("enter dest and weight:\n");
         while (scanf("%d",&dest)!=0 && scanf("%d",&w)!=0){
             if((dest >= 'A' && dest <= 'Z') || (w >= 'A' && w <= 'Z'))
             {
@@ -173,6 +172,31 @@ void free_edges(pnode p)
             temp = temp->next;
             free(p1);
         }
+    }
+}
+void delete_node_cmd(pnode *head)
+{
+    int D = 0;
+    scanf("%d",&D);
+    pnode tempNode = *head;
+    node *p = NULL;
+    if(tempNode->id != D)
+    {
+        while (tempNode->next->id!=D)
+        {
+            tempNode = tempNode->next;
+        }
+        p = tempNode->next;
+        tempNode->next=tempNode->next->next;
+        free_edges(p);
+        free(p);
+    }
+    else
+    {
+        p = *head;
+        *head = p->next;
+        free_edges(p);
+        free(p);
     }
 }
 void deleteGraph_cmd(pnode* head){
