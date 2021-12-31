@@ -42,6 +42,8 @@ void deleteGraph_cmd(pnode *head);
 
 void print_graph(pnode head);
 
+void del_edge(pnode *head,int n);
+
 void TSP_cmd(pnode head);
 
 

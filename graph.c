@@ -173,10 +173,52 @@ void free_edges(pnode p)
         }
     }
 }
+void del_edge(pnode *head,int n)
+{
+    pnode tempNode = *head;
+
+    while (tempNode!= NULL)
+    {
+        if(tempNode->id != n && tempNode->edges!=NULL){
+
+            if(tempNode->edges->endpoint->id !=n)
+            {
+                pedge tempEdge = tempNode->edges;
+
+                while (tempEdge->next!= NULL)
+                {
+                    if(tempEdge->next->endpoint->id == n){
+                        pedge p1 = tempEdge->next;
+                        tempEdge->next=tempEdge->next->next;
+                        free(p1);
+                        break;
+                    }
+                    tempEdge = tempEdge->next;
+                }
+            }
+            else
+            {
+                if(tempNode->edges->next ==NULL)
+                {
+                    pedge p1 = tempNode->edges;
+                    tempNode->edges = NULL;
+                    free(p1);
+                }
+                else{
+                    pedge p1 = tempNode->edges;
+                    tempNode->edges = p1->next;
+                    free(p1);
+                }
+            }
+        }
+        tempNode = tempNode->next;
+    }
+}
 void delete_node_cmd(pnode *head)
 {
     int D = 0;
     scanf("%d",&D);
+    del_edge(head,D);
     pnode tempNode = *head;
     node *p = NULL;
     if(tempNode->node_num != D)
