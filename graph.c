@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include "graph.h"
 
-pnode creat_graph(int num_of_nodes)
+pnode buildGraph(int num_of_nodes)
 {
     node *head = NULL;
     pnode newNode, temp = NULL;
@@ -16,7 +16,7 @@ pnode creat_graph(int num_of_nodes)
         exit(0);
     }
 
-    head->id = 0;
+    head->node_num = 0;
     head->next = NULL;
     head->edges = NULL;
 
@@ -28,10 +28,10 @@ pnode creat_graph(int num_of_nodes)
 
         if(newNode == NULL)
         {
-            printf("Unable to allocate memory.");
+            perror("Unable to allocate memory.");
             break;
         }
-        newNode->id = i;
+        newNode->node_num = i;
         newNode->next = NULL;
         newNode->edges = NULL;
 
@@ -47,7 +47,7 @@ pnode getNode(int id, pnode *head)
 
     while (temp != NULL)
     {
-        if (temp->id == id)
+        if (temp->node_num == id)
         {
             return temp;
         }
@@ -76,7 +76,6 @@ void add_adge(pnode *head,int src){
             break;
         }
         insert_edge(temp,dest,w,head);
-        printf("%d",temp->edges->weight);
     }
 }
 
@@ -125,7 +124,7 @@ void insert_node_cmd(pnode *head){
             inGraph = inGraph->next;
         }
         pnode newNode = (pnode)(malloc(sizeof (node)));
-        newNode->id = src;
+        newNode->node_num = src;
         newNode->edges = NULL;
         newNode->next = NULL;
         inGraph->next = newNode;
@@ -180,9 +179,9 @@ void delete_node_cmd(pnode *head)
     scanf("%d",&D);
     pnode tempNode = *head;
     node *p = NULL;
-    if(tempNode->id != D)
+    if(tempNode->node_num != D)
     {
-        while (tempNode->next->id!=D)
+        while (tempNode->next->node_num != D)
         {
             tempNode = tempNode->next;
         }
@@ -223,11 +222,11 @@ void print_graph(pnode head){// for self debug
     pnode tempNode = head;
     while (tempNode != NULL)
     {
-        printf("Node: %d {", tempNode->id);
+        printf("Node: %d {", tempNode->node_num);
         pedge tempEdge = tempNode->edges;
         while (tempEdge != NULL)
         {
-            printf("dest: %d weight: %d ", tempEdge->endpoint->id,tempEdge->weight);
+            printf("dest: %d weight: %d ", tempEdge->endpoint->node_num, tempEdge->weight);
             tempEdge = tempEdge->next;
         }
         printf("}");

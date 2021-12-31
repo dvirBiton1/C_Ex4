@@ -10,12 +10,13 @@ int main() {
     char ch;
     int v = 0;
     int src = 0;
-
+    printf("Welcome: \n");
     while (scanf("%c", &choise) != EOF) {
         if (choise == 'A') {
             deleteGraph_cmd(head);
+            printf("enter num of verticals:\n");
             scanf("%d", &v);
-            *head = creat_graph(v);
+            *head = buildGraph(v);
 
             scanf("%c", &ch);
 
@@ -30,34 +31,40 @@ int main() {
             print_graph(*head);
             choise = ch;
 
-            printf("end A func\n");
+            printf("\nend A func\n");
         }
         if (choise == 'B') {
-            printf("start B FUNC\n");
+            printf("\nstart B FUNC\n");
             insert_node_cmd(head);
             print_graph(*head);
             continue;
 
         }
         if (choise == 'D') {
-            printf("start D FUNC\n");
+            printf("\nstart D FUNC\n");
             delete_node_cmd(head);
             print_graph(*head);
             continue;
         }
         if (choise == 'S') {
-            printf("start S FUNC\n");
-            // shortsPath_cmd(*head);
+            printf("\nstart S FUNC\n");
+//            shortsPath_cmd(*head);
+            int src = -1, dest = -1;
+            scanf("%d %d", &src, &dest);
+            int dis = shortsPath_cmd(*head, src, dest);
+            printf("Dijsktra shortest path: %d \n", dis);
             print_graph(*head);
             continue;
         }
         if (choise == 'T') {
-            printf("start T FUNC\n");
+            printf("\nstart T FUNC\n");
             // TSP_cmd(*head);
             print_graph(*head);
             continue;
         }
-        break;
+        if(choise == 'k'){
+            break;
+        }
     }
     deleteGraph_cmd(head);
 
