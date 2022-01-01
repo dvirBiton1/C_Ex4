@@ -3,11 +3,14 @@
 #include <ctype.h>
 #include "graph.h"
 
-void add_edge(pnode temp, int dest, int w, pnode *head) {
+void add_edge(pnode temp, int dest, int w, pnode *head)
+{
 
-    if (temp->edges == NULL) {
-        temp->edges = (pedge) malloc(sizeof(edge));
-        if (temp->edges == NULL) {
+    if (temp->edges == NULL)
+    {
+        temp->edges = (pedge)malloc(sizeof(edge));
+        if (temp->edges == NULL)
+        {
             perror("malloc didnt work");
             exit(0);
         }
@@ -15,13 +18,17 @@ void add_edge(pnode temp, int dest, int w, pnode *head) {
         temp->edges->next = NULL;
         node *D = getNode(dest, head);
         temp->edges->endpoint = &(*D);
-    } else {
+    }
+    else
+    {
         pedge n = temp->edges;
-        while (n->next != NULL) {
+        while (n->next != NULL)
+        {
             n = n->next;
         }
-        n->next = (pedge) malloc(sizeof(edge));
-        if (n->next == NULL) {
+        n->next = (pedge)malloc(sizeof(edge));
+        if (n->next == NULL)
+        {
             perror("malloc didnt work");
             exit(0);
         }
@@ -32,11 +39,14 @@ void add_edge(pnode temp, int dest, int w, pnode *head) {
     }
 }
 
-void free_edges(pnode p) {
-    if (p->edges != NULL) {
+void free_edges(pnode p)
+{
+    if (p->edges != NULL)
+    {
         pedge temp = p->edges;
 
-        while (temp->next != NULL) {
+        while (temp->next != NULL)
+        {
             pedge p1 = NULL;
             p1 = temp;
             temp = temp->next;
@@ -45,17 +55,23 @@ void free_edges(pnode p) {
     }
 }
 
-void del_edge(pnode *head, int n) {
+void del_edge(pnode *head, int n)
+{
     pnode tempNode = *head;
 
-    while (tempNode != NULL) {
-        if (tempNode->node_num != n && tempNode->edges != NULL) {
+    while (tempNode != NULL)
+    {
+        if (tempNode->node_num != n && tempNode->edges != NULL)
+        {
 
-            if (tempNode->edges->endpoint->node_num != n) {
+            if (tempNode->edges->endpoint->node_num != n)
+            {
                 pedge tempEdge = tempNode->edges;
 
-                while (tempEdge->next != NULL) {
-                    if (tempEdge->next->endpoint->node_num == n) {
+                while (tempEdge->next != NULL)
+                {
+                    if (tempEdge->next->endpoint->node_num == n)
+                    {
                         pedge p1 = tempEdge->next;
                         tempEdge->next = tempEdge->next->next;
                         free(p1);
@@ -63,12 +79,17 @@ void del_edge(pnode *head, int n) {
                     }
                     tempEdge = tempEdge->next;
                 }
-            } else {
-                if (tempNode->edges->next == NULL) {
+            }
+            else
+            {
+                if (tempNode->edges->next == NULL)
+                {
                     pedge p1 = tempNode->edges;
                     tempNode->edges = NULL;
                     free(p1);
-                } else {
+                }
+                else
+                {
                     pedge p1 = tempNode->edges;
                     tempNode->edges = p1->next;
                     free(p1);

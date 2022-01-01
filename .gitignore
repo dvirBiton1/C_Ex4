@@ -1,3 +1,5 @@
 cmake-build-debug
-CMakeLists.txt
-input1.txt
+*.txt
+inputs
+outputs
+.idea

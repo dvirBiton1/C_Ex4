@@ -3,7 +3,7 @@
 15	130	6627707599557289	CMakeFiles/untitled.dir/main.c.obj	91ff962f57de9d78
 28	141	6627707599713545	CMakeFiles/untitled.dir/dijkstra.c.obj	25dbefcff079032e
 148	271	6627707600967590	untitled.exe	7015e836c6c84451
-1	202	6627709870372728	build.ninja	3c9a5a109ba0ef98
+1	202	6627727281413711	build.ninja	3c9a5a109ba0ef98
 2	148	6627707599713545	CMakeFiles/untitled.dir/graph.c.obj	b1c42b95dc26a53b
 17	110	6626522422778461	CMakeFiles/untitled.dir/dvirdi.c.obj	764be8e06ce0317f
 18	115	6627707599401033	CMakeFiles/untitled.dir/nodes.c.obj	1fb29ec0c672fa2b

@@ -96,12 +96,6 @@ build CMakeFiles/untitled.dir/edges.c.obj: C_COMPILER__untitled_Debug C$:/Users/
   OBJECT_DIR = CMakeFiles\untitled.dir
   OBJECT_FILE_DIR = CMakeFiles\untitled.dir
 
-build CMakeFiles/untitled.dir/algo.c.obj: C_COMPILER__untitled_Debug C$:/Users/dvir1/untitled/algo.c || cmake_object_order_depends_target_untitled
-  DEP_FILE = CMakeFiles\untitled.dir\algo.c.obj.d
-  FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\untitled.dir
-  OBJECT_FILE_DIR = CMakeFiles\untitled.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target untitled
@@ -110,7 +104,7 @@ build CMakeFiles/untitled.dir/algo.c.obj: C_COMPILER__untitled_Debug C$:/Users/d
 #############################################
 # Link the executable untitled.exe
 
-build untitled.exe: C_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.c.obj CMakeFiles/untitled.dir/graph.c.obj CMakeFiles/untitled.dir/dijkstra.c.obj CMakeFiles/untitled.dir/TSP.c.obj CMakeFiles/untitled.dir/nodes.c.obj CMakeFiles/untitled.dir/edges.c.obj CMakeFiles/untitled.dir/algo.c.obj
+build untitled.exe: C_EXECUTABLE_LINKER__untitled_Debug CMakeFiles/untitled.dir/main.c.obj CMakeFiles/untitled.dir/graph.c.obj CMakeFiles/untitled.dir/dijkstra.c.obj CMakeFiles/untitled.dir/TSP.c.obj CMakeFiles/untitled.dir/nodes.c.obj CMakeFiles/untitled.dir/edges.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\untitled.dir
