@@ -44,7 +44,7 @@ void print_graph(pnode head);
 
 void del_edge(pnode *head, int n);
 
-int TSP_cmd(pnode head);
+void TSP_cmd(pnode head);
 
 
 // Dijkstra //
@@ -57,5 +57,16 @@ pdijkstra getPdijkstra(pdijkstra head, int id);
 pdijkstra minVertical(pdijkstra head);
 
 int shortsPath_cmd(pnode head, int src, int dest);
+
+// TSP //
+void deep_copy(int *fromArr, int *toArr, int arrLenght);
+
+void swap(int *arr, int i, int j);
+
+void calcPermot(int *arr, int arrLength);
+
+void permotion(int start, int *arr, int arrLength);
+
+void TSP_cmd(pnode head);
 
 #endif

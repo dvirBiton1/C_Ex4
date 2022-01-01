@@ -57,8 +57,7 @@ int main() {
         }
         if (choise == 'T') {
             printf("\nstart T FUNC\n");
-            int weight = TSP_cmd(*head);
-            printf("TSP shortest path: %d\n",weight );
+            TSP_cmd(*head);
             print_graph(*head);
             continue;
         }
