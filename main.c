@@ -23,7 +23,7 @@ int main() {
             while (scanf("%c", &ch) != 0) {
                 if (ch == 'n') {
                     scanf("%d", &src);
-                    add_adge(head, src);
+                    insert_node_funcA_cmd(head, src);
                 } else {
                     break;
                 }
@@ -48,21 +48,21 @@ int main() {
         }
         if (choise == 'S') {
             printf("\nstart S FUNC\n");
-//            shortsPath_cmd(*head);
             int src = -1, dest = -1;
             scanf("%d %d", &src, &dest);
             int dis = shortsPath_cmd(*head, src, dest);
-            printf("Dijsktra shortest path: %d \n", dis);
+            printf("Dijsktra shortest path: %d\n", dis);
             print_graph(*head);
             continue;
         }
         if (choise == 'T') {
             printf("\nstart T FUNC\n");
-            // TSP_cmd(*head);
+            int weight = TSP_cmd(*head);
+            printf("TSP shortest path: %d\n",weight );
             print_graph(*head);
             continue;
         }
-        if(choise == 'k'){
+        if (choise == 'k') {
             break;
         }
     }
