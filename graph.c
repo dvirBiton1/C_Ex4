@@ -52,6 +52,7 @@ void deleteGraph_cmd(pnode *head)
         tempNode = tempNode->next;
         free(tempFree);
     }
+    free(tempNode);
 }
 
 void print_graph(pnode head)

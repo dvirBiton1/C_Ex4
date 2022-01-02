@@ -39,19 +39,22 @@ void add_edge(pnode temp, int dest, int w, pnode *head)
     }
 }
 
-void free_edges(pnode p)
+void free_edges(pnode edg)
 {
-    if (p->edges != NULL)
+    if (edg->edges != NULL)
     {
-        pedge temp = p->edges;
+        pedge temp = edg->edges;
 
-        while (temp->next != NULL)
+        while (temp != NULL)
         {
             pedge p1 = NULL;
             p1 = temp;
             temp = temp->next;
             free(p1);
         }
+    }
+    else{
+        free(edg->edges);
     }
 }
 
