@@ -58,22 +58,22 @@ void free_edges(pnode edg)
     }
 }
 
-void del_edge(pnode *head, int n)
+void del_edge(pnode *head, int nodeId)
 {
     pnode tempNode = *head;
 
     while (tempNode != NULL)
     {
-        if (tempNode->node_num != n && tempNode->edges != NULL)
+        if (tempNode->node_num != nodeId && tempNode->edges != NULL)
         {
 
-            if (tempNode->edges->endpoint->node_num != n)
+            if (tempNode->edges->endpoint->node_num != nodeId)
             {
                 pedge tempEdge = tempNode->edges;
 
                 while (tempEdge->next != NULL)
                 {
-                    if (tempEdge->next->endpoint->node_num == n)
+                    if (tempEdge->next->endpoint->node_num == nodeId)
                     {
                         pedge p1 = tempEdge->next;
                         tempEdge->next = tempEdge->next->next;
