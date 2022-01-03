@@ -3,10 +3,10 @@
 #include <ctype.h>
 #include "graph.h"
 
-pnode build_Graph(int verticals)
+pnode buildGraph(int num_of_nodes)
 {
     node *head = NULL;
-    pnode new_node, temp = NULL;
+    pnode newNode, temp = NULL;
     int i;
     head = (pnode)malloc(sizeof(node));
     if (head == NULL)
@@ -19,18 +19,18 @@ pnode build_Graph(int verticals)
     head->edges = NULL;
     temp = head;
 
-    for (i = 1; i < verticals; i++)
+    for (i = 1; i < num_of_nodes; i++)
     {
-        new_node = (pnode)malloc(sizeof(node));
-        if (new_node == NULL)
+        newNode = (pnode)malloc(sizeof(node));
+        if (newNode == NULL)
         {
             perror("malloc didnt work");
             exit(0);
         }
-        new_node->node_num = i;
-        new_node->next = NULL;
-        new_node->edges = NULL;
-        temp->next = new_node;
+        newNode->node_num = i;
+        newNode->next = NULL;
+        newNode->edges = NULL;
+        temp->next = newNode;
         temp = temp->next;
     }
     return head;
@@ -38,36 +38,35 @@ pnode build_Graph(int verticals)
 
 void deleteGraph_cmd(pnode *head)
 {
-    pnode temp_node = *head;
-    while (temp_node != NULL)
+    pnode tempNode = *head;
+    while (tempNode != NULL)
     {
-        pedge temp_edge = temp_node->edges;
-        while (temp_edge != NULL)
+        pedge tempEdge = tempNode->edges;
+        while (tempEdge != NULL)
         {
-            pedge tempEdge_free = temp_edge;
-            temp_edge = temp_edge->next;
-            free(tempEdge_free);
+            pedge tempEdgefree = tempEdge;
+            tempEdge = tempEdge->next;
+            free(tempEdgefree);
         }
-        node *temp_Free = temp_node;
-        temp_node = temp_node->next;
-        free(temp_Free);
+        node *tempFree = tempNode;
+        tempNode = tempNode->next;
+        free(tempFree);
     }
-    free(temp_node);
 }
 
 void print_graph(pnode head)
 { // for self debug
-    pnode temp_node = head;
-    while (temp_node != NULL)
+    pnode tempNode = head;
+    while (tempNode != NULL)
     {
-        printf("Node: %d {", temp_node->node_num);
-        pedge temp_edge = temp_node->edges;
-        while (temp_edge != NULL)
+        printf("Node: %d {", tempNode->node_num);
+        pedge tempEdge = tempNode->edges;
+        while (tempEdge != NULL)
         {
-            printf("dest: %d weight: %d ", temp_edge->endpoint->node_num, temp_edge->weight);
-            temp_edge = temp_edge->next;
+            printf("dest: %d weight: %d ", tempEdge->endpoint->node_num, tempEdge->weight);
+            tempEdge = tempEdge->next;
         }
         printf("}");
-        temp_node = temp_node->next;
+        tempNode = tempNode->next;
     }
 }

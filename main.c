@@ -7,18 +7,18 @@ int main()
 {
     pnode temp = NULL;
     pnode *head = &temp;
-    char func;
+    char choise;
     char ch;
-    int verticals = 0;
+    int v = 0;
     int src = 0;
-    while (scanf("%c", &func) != EOF)
+    while (scanf("%c", &choise) != EOF)
     {
-        if (func == 'A')
+        if (choise == 'A')
         {
             deleteGraph_cmd(head);
             // printf("enter num of verticals:\n");
-            scanf("%d", &verticals);
-            *head = build_Graph(verticals);
+            scanf("%d", &v);
+            *head = buildGraph(v);
 
             scanf("%c", &ch);
 
@@ -27,7 +27,7 @@ int main()
                 if (ch == 'n')
                 {
                     scanf("%d", &src);
-                    funcA_insert(head, src);
+                    insert_node_funcA_cmd(head, src);
                 }
                 else
                 {
@@ -35,35 +35,35 @@ int main()
                 }
             }
             //print_graph(*head);
-            func = ch;
+            choise = ch;
 
             //printf("\nend A func\n");
         }
-        if (func == 'B')
+        if (choise == 'B')
         {
             //printf("\nstart B FUNC\n");
             insert_node_cmd(head);
             //print_graph(*head);
             continue;
         }
-        if (func == 'D')
+        if (choise == 'D')
         {
             // printf("\nstart D FUNC\n");
             delete_node_cmd(head);
             // print_graph(*head);
             continue;
         }
-        if (func == 'S')
+        if (choise == 'S')
         {
             // printf("\nstart S FUNC\n");
             int src = -1, dest = -1;
             scanf("%d %d", &src, &dest);
-            int distance = shortsPath_cmd(*head, src, dest);
-            printf("Dijsktra shortest path: %d\n", distance);
+            int dis = shortsPath_cmd(*head, src, dest);
+            printf("Dijsktra shortest path: %d \n", dis);
             //print_graph(*head);
             continue;
         }
-        if (func == 'T')
+        if (choise == 'T')
         {
             // printf("\nstart T FUNC\n");
             TSP_cmd(*head);
