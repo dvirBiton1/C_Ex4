@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include "graph.h"
 
-pnode buildGraph(int num_of_nodes)
+pnode build_graph_cmd(int num_of_nodes)
 {
     node *head = NULL;
     pnode newNode, temp = NULL;
@@ -36,7 +36,7 @@ pnode buildGraph(int num_of_nodes)
     return head;
 }
 
-void deleteGraph_cmd(pnode *head)
+void delete_graph_cmd(pnode *head)
 {
     pnode tempNode = *head;
     while (tempNode != NULL)

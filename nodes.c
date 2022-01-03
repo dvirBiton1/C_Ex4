@@ -46,10 +46,10 @@ void insert_node_cmd(pnode *head)
     pnode temp = getNode(src, head);
     if (temp == NULL)
     {
-        pnode inGraph = *head;
-        while (inGraph->next != NULL)
+        pnode pGraphNode = *head;
+        while (pGraphNode->next != NULL)
         {
-            inGraph = inGraph->next;
+            pGraphNode = pGraphNode->next;
         }
         pnode newNode = (pnode)(malloc(sizeof(node)));
         if (newNode == NULL)
@@ -60,7 +60,7 @@ void insert_node_cmd(pnode *head)
         newNode->node_num = src;
         newNode->edges = NULL;
         newNode->next = NULL;
-        inGraph->next = newNode;
+        pGraphNode->next = newNode;
         //printf("enter dest and weight:\n");
         while (scanf("%d", &dest) != 0 && scanf("%d", &weight) != 0)
         {
@@ -89,27 +89,27 @@ void insert_node_cmd(pnode *head)
 
 void delete_node_cmd(pnode *head)
 {
-    int D = 0;
-    scanf("%d", &D);
-    del_edge(head, D);
+    int id = 0;
+    scanf("%d", &id);
+    delete_edge(head, id);
     pnode tempNode = *head;
-    node *p = NULL;
-    if (tempNode->node_num != D)
+    node *pNode = NULL;
+    if (tempNode->node_num != id)
     {
-        while (tempNode->next->node_num != D)
+        while (tempNode->next->node_num != id)
         {
             tempNode = tempNode->next;
         }
-        p = tempNode->next;
+        pNode = tempNode->next;
         tempNode->next = tempNode->next->next;
-        free_edges(p);
-        free(p);
+        free_edges(pNode);
+        free(pNode);
     }
     else
     {
-        p = *head;
-        *head = p->next;
-        free_edges(p);
-        free(p);
+        pNode = *head;
+        *head = pNode->next;
+        free_edges(pNode);
+        free(pNode);
     }
 }
