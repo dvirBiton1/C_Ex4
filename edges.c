@@ -3,39 +3,39 @@
 #include <ctype.h>
 #include "graph.h"
 
-void add_edge(pnode temp, int dest, int w, pnode *head)
+void add_edge(pnode temp_edge, int dest, int w, pnode *head)
 {
 
-    if (temp->edges == NULL)
+    if (temp_edge->edges == NULL)
     {
-        temp->edges = (pedge)malloc(sizeof(edge));
-        if (temp->edges == NULL)
+        temp_edge->edges = (pedge)malloc(sizeof(edge));
+        if (temp_edge->edges == NULL)
         {
             perror("malloc didnt work");
             exit(0);
         }
-        temp->edges->weight = w;
-        temp->edges->next = NULL;
+        temp_edge->edges->weight = w;
+        temp_edge->edges->next = NULL;
         node *D = getNode(dest, head);
-        temp->edges->endpoint = &(*D);
+        temp_edge->edges->endpoint = &(*D);
     }
     else
     {
-        pedge n = temp->edges;
-        while (n->next != NULL)
+        pedge second_edge = temp_edge->edges;
+        while (second_edge->next != NULL)
         {
-            n = n->next;
+            second_edge = second_edge->next;
         }
-        n->next = (pedge)malloc(sizeof(edge));
-        if (n->next == NULL)
+        second_edge->next = (pedge)malloc(sizeof(edge));
+        if (second_edge->next == NULL)
         {
             perror("malloc didnt work");
             exit(0);
         }
-        n->next->next = NULL;
-        n->next->weight = w;
+        second_edge->next->next = NULL;
+        second_edge->next->weight = w;
         node *D = getNode(dest, head);
-        n->next->endpoint = &(*D);
+        second_edge->next->endpoint = &(*D);
     }
 }
 
@@ -47,10 +47,10 @@ void free_edges(pnode edg)
 
         while (temp != NULL)
         {
-            pedge p1 = NULL;
-            p1 = temp;
+            pedge pointer = NULL;
+            pointer = temp;
             temp = temp->next;
-            free(p1);
+            free(pointer);
         }
     }
     else{
@@ -58,47 +58,47 @@ void free_edges(pnode edg)
     }
 }
 
-void del_edge(pnode *head, int nodeId)
+void del_edge(pnode *head, int node_Id)
 {
-    pnode tempNode = *head;
+    pnode temp_Node = *head;
 
-    while (tempNode != NULL)
+    while (temp_Node != NULL)
     {
-        if (tempNode->node_num != nodeId && tempNode->edges != NULL)
+        if (temp_Node->node_num != node_Id && temp_Node->edges != NULL)
         {
 
-            if (tempNode->edges->endpoint->node_num != nodeId)
+            if (temp_Node->edges->endpoint->node_num != node_Id)
             {
-                pedge tempEdge = tempNode->edges;
+                pedge temp_Edge = temp_Node->edges;
 
-                while (tempEdge->next != NULL)
+                while (temp_Edge->next != NULL)
                 {
-                    if (tempEdge->next->endpoint->node_num == nodeId)
+                    if (temp_Edge->next->endpoint->node_num == node_Id)
                     {
-                        pedge p1 = tempEdge->next;
-                        tempEdge->next = tempEdge->next->next;
-                        free(p1);
+                        pedge pointer = temp_Edge->next;
+                        temp_Edge->next = temp_Edge->next->next;
+                        free(pointer);
                         break;
                     }
-                    tempEdge = tempEdge->next;
+                    temp_Edge = temp_Edge->next;
                 }
             }
             else
             {
-                if (tempNode->edges->next == NULL)
+                if (temp_Node->edges->next == NULL)
                 {
-                    pedge p1 = tempNode->edges;
-                    tempNode->edges = NULL;
+                    pedge p1 = temp_Node->edges;
+                    temp_Node->edges = NULL;
                     free(p1);
                 }
                 else
                 {
-                    pedge p1 = tempNode->edges;
-                    tempNode->edges = p1->next;
+                    pedge p1 = temp_Node->edges;
+                    temp_Node->edges = p1->next;
                     free(p1);
                 }
             }
         }
-        tempNode = tempNode->next;
+        temp_Node = temp_Node->next;
     }
 }
